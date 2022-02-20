@@ -29,7 +29,8 @@ const tasks = [{
         acc[task._id] = task;
         return acc;
     }, {});
-
+    //Elements UI
+    const listContainer = document.querySelector('.tasks-list-section .list-group')
     renderAllTasks(objOfTasks);
 
     function renderAllTasks(tasksList) {
@@ -40,10 +41,40 @@ const tasks = [{
         const fragment = document.createDocumentFragment();
         Object.values(tasksList).forEach(task => {
             const li = listItemTemplate(task);
+            fragment.appendChild(li);
         })
+        listContainer.appendChild(fragment)
     };
-
+    // Create Dom Element from task
     function listItemTemplate({ _id, title, body } = {}) {
+        //Create li
+        const li = document.createElement('li')
+        li.classList.add('list-group-item', 'd-flex', 'align-items-center', 'flex-wrap', 'mt-2');
 
+        //Create title
+        const span = document.createElement('span')
+        span.textContent = 'title'
+        span.style.fontWeight = 'bold'
+
+        //Create delete button
+        const deleteBtn = document.createElement('button')
+        deleteBtn.textContent = "Delete task";
+        deleteBtn.classList.add('btn', 'btn-danger', 'ml-auto', 'delete-btn')
+
+        //Create p
+        const article = document.createElement('p');
+        article.textContent = body;
+        article.classList.add('mt-2', 'w-100');
+
+        //Create elements of li Arr
+        let ellementsOfLiArr = [];
+        ellementsOfLiArr.push(span, deleteBtn, article)
+
+        //Add elements to li
+        ellementsOfLiArr.forEach(el => {
+            li.appendChild(el)
+        })
+
+        return li;
     }
 }(tasks));
