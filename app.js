@@ -31,6 +31,15 @@ const tasks = [{
     }, {});
     //Elements UI
     const listContainer = document.querySelector('.tasks-list-section .list-group')
+
+    const form = document.forms['addTask'];
+    const inputTitle = form.elements['title'];
+    const inputBody = form.elements['body'];
+
+
+
+
+
     renderAllTasks(objOfTasks);
 
     function renderAllTasks(tasksList) {
@@ -77,4 +86,5 @@ const tasks = [{
 
         return li;
     }
+
 }(tasks));
