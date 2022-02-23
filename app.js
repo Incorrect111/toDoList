@@ -36,11 +36,9 @@ const tasks = [{
     const inputTitle = form.elements['title'];
     const inputBody = form.elements['body'];
 
-
-
-
-
+    //Events
     renderAllTasks(objOfTasks);
+    form.addEventListener('submit', onFormSubmitHandler)
 
     function renderAllTasks(tasksList) {
         if (!tasksList) {
@@ -85,6 +83,29 @@ const tasks = [{
         })
 
         return li;
+    }
+
+    function onFormSubmitHandler(e) {
+        e.preventDefault();
+        const tittleValue = inputTitle.value;
+        const bodyValue = inputBody.value;
+        if (!tittleValue || !bodyValue) {
+            alert('Пожалуйста введите title и body!!!')
+            return;
+        }
+        const task = createNewTask(tittleValue, bodyValue);
+    }
+
+    function createNewTask(title, body) {
+        const newTask = {
+            title,
+            body,
+            completed: false,
+            _id: `task-${Math.random()}`
+        }
+        objOfTasks[newTask._id] = newTask;
+
+        return {...newTask }
     }
 
 }(tasks));
