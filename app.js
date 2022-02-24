@@ -119,14 +119,28 @@ const tasks = [{
         return {...newTask }
     }
 
+    function deleteTask(id) {
+        const { title } = objOfTasks[id]
+        const isConfirm = confirm(`Вы точно хотите удалить задачу ${title}?`)
+        if (!isConfirm) return isConfirm;
+        delete objOfTasks[id];
+        return isConfirm
+    }
+
+    function deleteTaskFromHtml(el, confirmed) {
+        if (!confirmed) return;
+        el.remove();
+    }
+
     function onDeleteHandler({ target }) {
         const parent = target.closest('[data-task-id]')
         const id = parent.dataset.taskId;
-        console.log(id)
-            // if (target.classList.contains('delete-btn')) {
-            //     const isConfirm = confirm('Вы точно хотите удалить задачу?')
-            //     if(isConfirm) {}
-            // }
+        const confirmed = deleteTask(id);
+        deleteTaskFromHtml(parent, confirmed)
+
+
     }
+
+
 
 }(tasks));
