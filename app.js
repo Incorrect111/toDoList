@@ -120,10 +120,13 @@ const tasks = [{
     }
 
     function onDeleteHandler({ target }) {
-        // if (target.classList.contains('delete-btn')) {
-        //     const isConfirm = confirm('Вы точно хотите удалить задачу?')
-        //     if(isConfirm) {}
-        // }
+        const parent = target.closest('[data-task-id]')
+        const id = parent.dataset.taskId;
+        console.log(id)
+            // if (target.classList.contains('delete-btn')) {
+            //     const isConfirm = confirm('Вы точно хотите удалить задачу?')
+            //     if(isConfirm) {}
+            // }
     }
 
 }(tasks));
