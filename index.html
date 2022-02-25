@@ -11,11 +11,11 @@
 </head>
 
 <body>
+
     <nav class="header navbar navbar-dark bg-primary">
         <a class="navbar-brand">Navbar</a>
         <form class="form-inline">
             <select class="form-control form-control-sm" id="themeSelect">
-            <option value="default">Theme Default</option>
             <option value="light">Theme Light</option>
             <option value="dark">Theme Dark</option>
           </select>
@@ -48,6 +48,11 @@
         </div>
     </div>
     <script src="app.js"></script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"; const firebaseConfig = { apiKey: "AIzaSyBMQ04mbOP3N53nbgnQoxjX-o_jiE56l68", authDomain: "to-do-list-acf55.firebaseapp.com", projectId: "to-do-list-acf55", storageBucket:"to-do-list-acf55.appspot.com",
+        messagingSenderId: "330260878196", appId: "1:330260878196:web:9db29095bcf104ba3d1221" }; const app = initializeApp(firebaseConfig); console.log(app)
+    </script>
 </body>
 
 </html>

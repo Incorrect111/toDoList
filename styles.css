@@ -1,28 +1,31 @@
 :root {
     --base-text-color: #212529;
-    --header-bg: #007bff;
-    --header-text-color: #fff;
-    --default-btn-bg: #007bff;
+    --header-bg: #fff;
+    --header-text-color: black;
+    --default-btn-bg: rgb(172, 172, 172);
     --default-btn-text-color: #fff;
-    --default-btn-hover-bg: #0069d9;
-    --default-btn-border-color: #0069d9;
+    --default-btn-hover-bg: rgb(196, 196, 196);
+    --default-btn-border-color: rgb(172, 172, 172);
     --danger-btn-bg: #dc3545;
     --danger-btn-text-color: #fff;
-    --danger-btn-hover-bg: #bd2130;
+    --danger-btn-hover-bg: #ef808a;
     --danger-btn-border-color: #dc3545;
     --input-border-color: #ced4da;
     --input-bg-color: #fff;
     --input-text-color: #495057;
     --input-focus-bg-color: #fff;
     --input-focus-text-color: #495057;
-    --input-focus-border-color: #80bdff;
-    --input-focus-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    --li-background-color: #5c5d5f;
-    --text-color: white;
+    --input-focus-border-color: #78818a;
+    --input-focus-box-shadow: 0 0 0 0.2rem rgba(141, 143, 146, 0.25);
+    --li-background-color: white;
+    --text-color: black;
+    --body-color: rgb(228, 224, 224);
+    --card-bg-color: white;
+    --asd: #e0e4e7;
 }
 
 body {
-    color: var(--base-text-color);
+    background-color: var(--body-color)
 }
 
 .navbar {
@@ -76,8 +79,16 @@ body {
     box-shadow: var(--input-focus-box-shadow);
 }
 
+.list-group li {
+    background-color: var(--li-background-color);
+    color: var(--text-color);
+}
 
-/* .list-group li {
-    background-color: #5c5d5f;
-    color: white;
+.card {
+    background-color: var(--card-bg-color);
+}
+
+
+/* .form-section {
+    background-color: var(--form-section-bg);
 } */
