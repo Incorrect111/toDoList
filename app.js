@@ -70,6 +70,8 @@ const tasks = [{
             '--input-focus-text-color': '#495057',
             '--input-focus-border-color': '#78818a',
             '--input-focus-box-shadow': '0 0 0 0.2rem rgba(141, 143, 146, 0.25)',
+            '--li-background-color': '#5c5d5f',
+            // --text-color: white;
         },
         light: {
             '--base-text-color': '#212529',
@@ -101,7 +103,7 @@ const tasks = [{
     const inputTitle = form.elements['title'];
     const inputBody = form.elements['body'];
     const themeSelect = document.getElementById('themeSelect')
-    console.log(themeSelect)
+
 
     //Events
     renderAllTasks(objOfTasks);
@@ -132,7 +134,7 @@ const tasks = [{
 
         //Create title
         const span = document.createElement('span')
-        span.textContent = 'title'
+        span.textContent = title;
         span.style.fontWeight = 'bold'
 
         //Create delete button
@@ -189,7 +191,11 @@ const tasks = [{
     }
 
     function deleteTask(id) {
+
         const { title } = objOfTasks[id]
+        console.log(id)
+        console.log(objOfTasks)
+
         const isConfirm = confirm(`Вы точно хотите удалить задачу ${title}?`)
         if (!isConfirm) return isConfirm;
         delete objOfTasks[id];
@@ -218,7 +224,12 @@ const tasks = [{
     }
 
     function setTheme(name) {
-        console.log(name)
+        const selectedThemeObj = themes[name];
+
+        Object.entries(selectedThemeObj).forEach(([key, value]) => {
+            console.log(key, value)
+            document.documentElement.style.setProperty(key, value);
+        });
     }
 
 
