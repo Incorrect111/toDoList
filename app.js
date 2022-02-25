@@ -94,6 +94,7 @@ const tasks = [{
         },
     };
     let lastSelectedTheme = 'default';
+
     //Elements UI
     const listContainer = document.querySelector('.tasks-list-section .list-group')
 
