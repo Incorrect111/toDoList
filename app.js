@@ -30,6 +30,8 @@ const tasks = [
         acc[task._id] = task;
         return acc;
     }, {});
+
+    //Themes
     const themes = {
         light: {
             '--header-bg': '#fff',
@@ -215,6 +217,7 @@ const tasks = [
         localStorage.setItem('app_theme', selectedTheme);
     }
 
+    //Set theme
     function setTheme(name) {
         const selectedThemeObj = themes[name];
 
