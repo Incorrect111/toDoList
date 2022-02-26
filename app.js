@@ -191,20 +191,20 @@ const tasks = [{
         localStorage.setItem(taskId, JSON.stringify(newTask));
     }
 
-    function deleteTaskFromLocalStorage(currentTask) {
-        console.log(JSON.stringify(currentTask))
+    function deleteTaskFromLocalStorage(currentTaskId) {
+        console.log(currentTaskId)
 
-        localStorage.removeItem(JSON.stringify(currentTask))
+        localStorage.removeItem(currentTaskId)
     };
 
     function deleteTask(id) {
-        let currentTask = objOfTasks[id];
-        console.log(currentTask)
+        let currentTaskId = id;
+        console.log(currentTaskId)
         const { title } = objOfTasks[id];
         const isConfirm = confirm(`Вы точно хотите удалить задачу ${title}?`)
         if (!isConfirm) return isConfirm;
         delete objOfTasks[id];
-        deleteTaskFromLocalStorage(currentTask);
+        deleteTaskFromLocalStorage(currentTaskId);
         // console.log(objOfTasks[id])
         return isConfirm;
     }
@@ -234,8 +234,9 @@ const tasks = [{
     //Set theme
     function setTheme(name) {
         const selectedThemeObj = themes[name];
-        Object.entries(selectedThemeObj).forEach(([key, value]) => {
-            document.documentElement.style.setProperty(key, value);
-        });
+        if (selectedThemeObj)
+            Object.entries(selectedThemeObj).forEach(([key, value]) => {
+                document.documentElement.style.setProperty(key, value);
+            });
     }
 }(tasks));
