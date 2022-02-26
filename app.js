@@ -1,37 +1,37 @@
-const tasks = [
-    // {
-    //     _id: '5d2ca9e2e03d40b326596aa7',
-    //     completed: true,
-    //     body: 'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-    //     title: 'Eu ea incididunt sunt consectetur fugiat non.',
-    // },
-    // {
-    //     _id: '5d2ca9e29c8a94095c1288e0',
-    //     completed: false,
-    //     body: 'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-    //     title: 'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-    // },
-    // {
-    //     _id: '5d2ca9e2e03d40b3232496aa7',
-    //     completed: true,
-    //     body: 'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-    //     title: 'Eu ea incididunt sunt consectetur fugiat non.',
-    // },
-    // {
-    //     _id: '5d2ca9e29c8a94095564788e0',
-    //     completed: false,
-    //     body: 'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-    //     title: 'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-    // },
+const tasks = [{
+        _id: '5d2ca9e2e03d40b326596aa7',
+        completed: true,
+        body: 'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+        title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    },
+    {
+        _id: '5d2ca9e29c8a94095c1288e0',
+        completed: false,
+        body: 'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+        title: 'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    },
+    {
+        _id: '5d2ca9e2e03d40b3232496aa7',
+        completed: true,
+        body: 'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+        title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    },
+    {
+        _id: '5d2ca9e29c8a94095564788e0',
+        completed: false,
+        body: 'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+        title: 'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    },
 ];
+
 
 (function(arrOftasks) {
     const objOfTasks = arrOftasks.reduce((acc, task) => {
         acc[task._id] = task;
         return acc;
     }, {});
-
-    //Themes
+    console.log(objOfTasks)
+        //Themes
     const themes = {
         light: {
             '--header-bg': '#fff',
@@ -87,7 +87,6 @@ const tasks = [
 
     };
     let lastSelectedTheme = localStorage.getItem('app_theme') || 'default';
-    console.log(lastSelectedTheme)
 
     //Elements UI
     const listContainer = document.querySelector('.tasks-list-section .list-group')
@@ -98,12 +97,17 @@ const tasks = [
 
 
     //Events
+
     setTheme(lastSelectedTheme)
     renderAllTasks(objOfTasks);
     form.addEventListener('submit', onFormSubmitHandler)
     listContainer.addEventListener('click', onDeleteHandler)
     themeSelect.addEventListener('change', onThemeSelectHandler);
 
+    function setTasks(tasks) {
+        console.log(tasks)
+        return localStorage.getItem(tasks)
+    };
 
     function renderAllTasks(tasksList) {
         if (!tasksList) {
@@ -179,20 +183,30 @@ const tasks = [
             _id: `task-${Math.random()}`
         }
         objOfTasks[newTask._id] = newTask;
-
+        addTaskToLocalStorage(newTask._id, newTask);
         return {...newTask }
     }
+    //Add Task to local storage
+    function addTaskToLocalStorage(taskId, newTask) {
+        localStorage.setItem(taskId, JSON.stringify(newTask));
+    }
+
+    function deleteTaskFromLocalStorage(currentTask) {
+        console.log(JSON.stringify(currentTask))
+
+        localStorage.removeItem(JSON.stringify(currentTask))
+    };
 
     function deleteTask(id) {
-
-        const { title } = objOfTasks[id]
-        console.log(id)
-        console.log(objOfTasks)
-
+        let currentTask = objOfTasks[id];
+        console.log(currentTask)
+        const { title } = objOfTasks[id];
         const isConfirm = confirm(`Вы точно хотите удалить задачу ${title}?`)
         if (!isConfirm) return isConfirm;
         delete objOfTasks[id];
-        return isConfirm
+        deleteTaskFromLocalStorage(currentTask);
+        // console.log(objOfTasks[id])
+        return isConfirm;
     }
 
     function deleteTaskFromHtml(el, confirmed) {
@@ -202,10 +216,10 @@ const tasks = [
 
     function onDeleteHandler({ target }) {
         if (target.classList.contains('delete-btn')) {
-            const parent = target.closest('[data-task-id]')
+            const parent = target.closest('[data-task-id]');
             const id = parent.dataset.taskId;
             const confirmed = deleteTask(id);
-            deleteTaskFromHtml(parent, confirmed)
+            deleteTaskFromHtml(parent, confirmed);
         }
 
     }
@@ -220,14 +234,8 @@ const tasks = [
     //Set theme
     function setTheme(name) {
         const selectedThemeObj = themes[name];
-
-        console.log(selectedThemeObj)
-
         Object.entries(selectedThemeObj).forEach(([key, value]) => {
-            console.log(key, value)
             document.documentElement.style.setProperty(key, value);
         });
     }
-
-
 }(tasks));
